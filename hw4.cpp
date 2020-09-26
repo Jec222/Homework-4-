@@ -15,7 +15,6 @@ int sum(list_t list){
     return 0;
 
   return list_first(list) +sum(list_rest(list));
-
 }
 int product(list_t list){
 
@@ -23,11 +22,21 @@ int product(list_t list){
     return 1;
 
   return list_first(list) * product(list_rest(list));
-
-      /* 
-    // EFFECTS: returns the product of each element in list
-    //          one if the list is empty.
-    */
 }
+list_t reverse(list_t list){
+
+  if(list_isEmpty(list))
+    return list_make();
+
+  return list_make( list_first(list), list_rest(list));
+
+      /*
+    // EFFECTS: returns the reverse of list
+    //
+    // For example: the reverse of ( 3 2 1 ) is ( 1 2 3 )
+    */
+
+}
+
 
 
