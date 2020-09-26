@@ -36,7 +36,16 @@ list_t reverse(list_t list){
   if (list_isEmpty(list))
     return list_make();
 
-   list_t l;
   return reverse_helper(list, list_make());
-
 }
+list_t append(list_t first, list_t second){
+
+  if (list_isEmpty(first))
+    return second;
+
+  return append( list_make(list_first(first),list_make()),  second);
+      /*
+    // EFFECTS: returns the list (first second)
+    */
+}
+
