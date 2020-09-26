@@ -14,21 +14,20 @@ int sum(list_t list){
   if (list_isEmpty(list))
     return 0;
 
-    return list_first(list) +sum(list_rest(list));
+  return list_first(list) +sum(list_rest(list));
 
-      //return sum(list, size - 1, sum + array[size - 1]);
+}
+int product(list_t list){
 
-  /* 
-  if (size == 0)  
-        return sum; 
-  
-    // Function Call Observe sum+array[size-1] 
-    // to maintain sum of elements 
-    return arrSum(array, size - 1, sum + array[size - 1]); 
-    // EFFECTS: returns the sum of each element in list
+  if (list_isEmpty(list))
+    return 1;
 
-    //          zero if the list is empty.
+  return list_first(list) * product(list_rest(list));
 
+      /* 
+    // EFFECTS: returns the product of each element in list
+    //          one if the list is empty.
     */
 }
+
 
