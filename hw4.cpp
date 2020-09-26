@@ -23,7 +23,7 @@ int product(list_t list){
 
   return list_first(list) * product(list_rest(list));
 }
- list_t reverse_helper(list_t list,list_t &l){
+ list_t reverse_helper(list_t list,list_t l){
 
   if(!list_isEmpty(list)){
     l=list_make(list_first(list),l);
@@ -34,8 +34,9 @@ int product(list_t list){
 list_t reverse(list_t list){
 
   if (list_isEmpty(list))
-    return list_make();;
+    return list_make();
 
    list_t l;
-  return reverse_helper(list,l);
+  return reverse_helper(list, list_make());
+
 }
