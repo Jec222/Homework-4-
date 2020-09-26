@@ -23,20 +23,15 @@ int product(list_t list){
 
   return list_first(list) * product(list_rest(list));
 }
+ list_t reverse_helper(list_t list,list_t &l){
+
+  if(!list_isEmpty(list)){
+    l=list_make(list_first(list),l);
+    return reverse_helper( list_rest(list),l);
+  }
+  return l;
+ }
 list_t reverse(list_t list){
-
-  if(list_isEmpty(list))
-    return list_make();
-
-  return list_make( list_first(list), list_rest(list));
-
-      /*
-    // EFFECTS: returns the reverse of list
-    //
-    // For example: the reverse of ( 3 2 1 ) is ( 1 2 3 )
-    */
-
+  list_t l;
+  return reverse_helper(list,l);
 }
-
-
-
