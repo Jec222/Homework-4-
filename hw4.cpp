@@ -32,6 +32,10 @@ int product(list_t list){
   return l;
  }
 list_t reverse(list_t list){
-  list_t l;
+
+  if (list_isEmpty(list))
+    return list_make();;
+
+   list_t l;
   return reverse_helper(list,l);
 }
