@@ -44,10 +44,7 @@ list_t append(list_t first, list_t second){
   if (list_isEmpty(first))
     return second;
 
-  return append( list_make(list_first(first),list_make()),  second);
-      /*
-    // EFFECTS: returns the list (first second)
-    */
+  return append( list_make(list_first(first),list_make()), second);
 }
 static bool odd(int x){
    if(x&&1)
@@ -58,13 +55,14 @@ static bool odd(int x){
 
 list_t filter(list_t list, bool (*fn)(int)){
 
-    list_t l=list_make();
+   list_t l=list_make();
    list_t f=list_make();
+
    int x;
    while(!list_isEmpty(list)){
       
-       x=list_first(list);
-       list=list_rest(list);
+       x = list_first(list);
+       list = list_rest(list);
        if(fn(x))
            l=list_make(x,l);
    }
@@ -75,8 +73,6 @@ list_t filter(list_t list, bool (*fn)(int)){
        f=list_make(x,f);
        l=list_rest(l);
    }
-
-
    return f;
 
     /*
@@ -85,18 +81,21 @@ list_t filter(list_t list, bool (*fn)(int)){
     //          order in which  they appeared in list.
     */
 }
+static list_t FilterOddHelper(list_t list,list_t new_list) {
+  if(list_isEmpty(list)) {
+    return new_list;
+  }
+  if((list_first(list) % 2)) {
+    new_list = list_make(list_first(list), new_list);
+  }
+  return FilterOddHelper(list_rest(list),new_list);
+}
+
 list_t filter_odd(list_t list){
   
-     list_t f=filter(list,odd);
-
-   return f;
-      /*
-    // EFFECTS: returns a new list containing only the elements of the
-    //          original list which are odd in value, 
-    //          in the order in which they appeared in list.
-    //
-    // For example, if you applied filter_odd to the list ( 4 1 3 0 )
-    // you would get the list ( 1 3 )
-    */ 
+  list_t new_list = list_make();
+  return reverse(FilterOddHelper(list,new_list));
+   return filter(list,odd);
+ 
 }
 
